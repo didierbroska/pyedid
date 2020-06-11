@@ -1,6 +1,11 @@
 """
 Test data
 """
+from glob import glob
+from os import path
+
+BASE_DIR = path.dirname(path.abspath(__file__))
+
 # from xrandr --verbose
 BASE_HEX_EDID = ("00ffffffffffff000469982401010101"
                  "1e1b01031e351e78ea9265a655559f28"
@@ -66,10 +71,33 @@ INTERFACES_PATH = (
 )
 
 INTERFACES_NAME = (
-        (0, "DP-1"),
-        (1, "DP-2"),
-        (0, "HDMI-A-1"),
-        (0, "HDMI-B-2"),
-        (0, "eDP-1")
+        (0, "DP-1"),        # 0
+        (1, "DP-2"),        # 1
+        (0, "HDMI-A-1"),    # 2
+        (0, "HDMI-B-2"),    # 3
+        (0, "eDP-1")        # 4
         )
 
+BYTES_EDID_HDMI_A_1 = b'\x00\xff\xff\xff\xff\xff\xff\x00A\x0c\xbe\x08"\x0b\x00\x00$\x18\x01\x03\x80/\x1ex*x\xf1\xa6UH\x9b&\x12PT\xbdK\x00\xb3\x00\x95\x00\x95\x0f\x81\x80\x81\xc0\x01\x01\x01\x01\x01\x01|.\x90\xa0`\x1a\x1e@0 6\x00\xda(\x11\x00\x00\x1a\x00\x00\x00\xff\x00AU51436002850\x00\x00\x00\xfc\x00220S4L\n      \x00\x00\x00\xfd\x008L\x1eS\x11\x00\n      \x00\x92'
+
+BYTES_EDID_eDP_1 = b'\x00\xff\xff\xff\xff\xff\xff\x00(\x89\x00\x00\x00\x00\x00\x00\x00\x1b\x01\x04\xa5\x1f\x11x\x03\x8d\xe0\xa5S5\xb8&\x0ePT\x00\x00\x00\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\xc0_\x00\xa0\xa0\xa0>P0 6\x005\xae\x10\x00\x00\x1a\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\x00JDI          \x00\x00\x00\xfe\x00LPM140M420   \x00\xb7'
+
+BYTES_EDID_HDMI_A_2 = b''
+BYTES_EDID_DP_1 = b''
+BYTES_EDID_DP_2 = b''
+
+BYTES_EDIDS = (
+        BYTES_EDID_DP_1,
+        BYTES_EDID_DP_2,
+        BYTES_EDID_HDMI_A_1,
+        BYTES_EDID_HDMI_A_2,
+        BYTES_EDID_eDP_1
+        )
+
+INTERFACES_NAME_EDID = (
+        ((0, "HDMI-A-1"), BYTES_EDID_HDMI_A_1),
+        ((0, "eDP-1"), BYTES_EDID_eDP_1)
+        )
+
+EDID_FILES = glob(BASE_DIR + "/data_files/*.edid")
+EDID_FILES.sort()
