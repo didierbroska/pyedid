@@ -55,3 +55,21 @@ PNP_ID = "ACI"
 COMPANY_NAME = "Ancor Communications Inc"
 
 COMPANY_RAW = 1129
+
+# from ls /sys/class/drm/*/edid
+INTERFACES_PATH = (
+    "/sys/class/drm/card0-DP-1/edid",
+    "/sys/class/drm/card1-DP-2/edid",
+    "/sys/class/drm/card0-HDMI-A-1/edid",
+    "/sys/class/drm/card0-HDMI-B-2/edid",
+    "/sys/class/drm/card0-eDP-1/edid"
+)
+
+INTERFACES_NAME = (
+        (0, "DP-1"),
+        (1, "DP-2"),
+        (0, "HDMI-A-1"),
+        (0, "HDMI-B-2"),
+        (0, "eDP-1")
+        )
+
