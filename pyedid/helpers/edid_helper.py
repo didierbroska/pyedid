@@ -39,14 +39,15 @@ class EdidHelper:
 
         :path: string path where monitor is connected 
 
-        :returns: String: interface named in sysfs drm.
+        :returns: Tupple(no card, interface named in sysfs drm)
         """
-        _RE_NAME = ( r"card(?<ncard>[0-9]{1,2})-"
-            r"(?P<interface_name>[a-zA-Z]+\-([A|B]\-)?[0-9]+)$"
+        _RE_NAME = (
+                r"card(?P<ncard>[0-9]+)-"
+                r"(?P<interface_name>[a-zA-Z]+\-[A|B]?\-?[0-9]+)"
             )
         name = re.search(_RE_NAME, path)
 
-        return (name.group(ncard), name.group(interface_name))
+        return int(name.group("ncard")), name.group("interface_name")
 
     @classmethod
     def get_edids(cls):
