@@ -25,5 +25,7 @@ class TestRegistry:
 
     def test_get_company(self):
         """Test converting pnp id to company"""
-        assert self.registry.get_company_from_id(data.PNP_ID) == data.COMPANY_NAME
-        assert self.registry.get_company_from_raw(data.COMPANY_RAW) == data.COMPANY_NAME
+        assert self.registry.get_company_from_id(
+                data.PNP_ID) == data.COMPANY_NAME
+        assert self.registry.get_company_from_raw(
+                data.COMPANY_RAW) == data.COMPANY_NAME
