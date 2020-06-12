@@ -21,7 +21,8 @@ class TestEdidHelper:
 
     def test_get_interface_edid(self, monkeypatch):
         """Test reading interface name bundled with edid."""
-        monkeypatch.setattr(EdidHelper, "edids_path", data.EDID_FILES)
-        
+        monkeypatch.setattr(
+                EdidHelper, "edids_path", data.EDID_FILES)
+
         assert EdidHelper.edids_path == data.EDID_FILES
         assert EdidHelper.get_interface_edid() == data.INTERFACES_NAME_EDID
