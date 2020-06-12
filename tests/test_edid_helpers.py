@@ -1,8 +1,9 @@
 """
 Test get_edid helper
 """
-from pyedid.helpers.edid_helper import EdidHelper
+from python_edid.helpers.edid_helper import EdidHelper
 from . import data
+
 
 class TestEdidHelper:
     """Test EdidHelper class"""
