@@ -4,7 +4,7 @@ Test registry module
 
 import tempfile
 
-from pyedid.helpers.registry import Registry
+from python_edid.helpers.registry import Registry
 from . import data
 
 
