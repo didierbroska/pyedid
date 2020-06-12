@@ -1,9 +1,10 @@
 """
 Test edid instance
 """
-from pyedid.edid import Edid
-from pyedid.helpers.registry import Registry
+from python_edid.edid import Edid
+from python_edid.helpers.registry import Registry
 from . import data
+
 
 class TestEdid:
 
