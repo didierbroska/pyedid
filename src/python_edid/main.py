@@ -2,9 +2,9 @@
 Entrypoint
 """
 
-from pyedid.edid import Edid
-from pyedid.helpers.edid_helper import EdidHelper
-from pyedid.helpers.registry import Registry
+from python_edid.edid import Edid
+from python_edid.helpers.edid_helper import EdidHelper
+from python_edid.helpers.registry import Registry
 
 
 def main():
@@ -13,9 +13,10 @@ def main():
     registry = Registry.from_web()
     print("Done!\n")
 
-    for raw in  EdidHelper.get_edids():
+    for raw in EdidHelper.get_edids():
         edid = Edid(raw, registry)
         print(edid)
+
 
 if __name__ == "__main__":
     main()

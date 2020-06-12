@@ -18,6 +18,7 @@ class WebPnpIdParser(HTMLParser):
         p.feed(html_data)
         p.result
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._find_table = False
@@ -39,7 +40,10 @@ class WebPnpIdParser(HTMLParser):
         elif self._find_table and tag == "tr":
             self._find_row = False
             # add table row to result
-            self.result[self._last_field[1]] = (self._last_field[0], self._last_field[-1])
+            self.result[self._last_field[1]] = (
+                self._last_field[0],
+                self._last_field[-1],
+            )
             self._last_field.clear()
 
     def handle_data(self, data):
@@ -128,5 +132,5 @@ class Registry(dict):
     def get_company_from_raw(self, raw: int) -> str:
         """Convert raw edid value to company name"""
         tmp = [(raw >> 10) & 31, (raw >> 5) & 31, raw & 31]
-        pnp_id = "".join(string.ascii_uppercase[n-1] for n in tmp)
+        pnp_id = "".join(string.ascii_uppercase[n - 1] for n in tmp)
         return self.get_company_from_id(pnp_id)

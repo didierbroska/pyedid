@@ -10,21 +10,21 @@ __all__ = ["EdidHelper"]
 
 class EdidHelper:
     """Class for working with EDID data"""
-    
+
     edids_path = glob("/sys/class/drm/*/edid")
 
     @classmethod
     def get_interface_name(cls, path):
         """Get interface name where edid was reading.
 
-        :path: string path where monitor is connected 
+        :path: string path where monitor is connected
 
         :returns: Tupple(no card, interface named in sysfs drm)
         """
         _RE_NAME = (
-                r"card(?P<ncard>[0-9]+)-"
-                r"(?P<interface_name>[a-zA-Z]+\-[A|B]?\-?[0-9]+)"
-            )
+            r"card(?P<ncard>[0-9]+)-"
+            r"(?P<interface_name>[a-zA-Z]+\-[A|B]?\-?[0-9]+)"
+        )
         name = re.search(_RE_NAME, path)
 
         return int(name.group("ncard")), name.group("interface_name")
@@ -38,7 +38,7 @@ class EdidHelper:
             ByteString: edid in raw bytestring
         """
 
-        with open(path, 'rb') as raw:
+        with open(path, "rb") as raw:
             edid = raw.read()
 
         return edid
@@ -54,7 +54,7 @@ class EdidHelper:
             intname = cls.get_interface_name(edid_path)
             edid = cls.get_edid(edid_path)
             # skip edid void
-            if edid == b'':
+            if edid == b"":
                 continue
             edids.append((intname, edid))
 
